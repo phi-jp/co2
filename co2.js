@@ -9,6 +9,10 @@
             return this._update();
         },
 
+        get: function(key) {
+            return this['_' + key];
+        },
+
         // 
         reset: function() {
             for (var key in this.defaults) {
@@ -47,6 +51,16 @@
 
         // bg color
         background: function(color) { return this.set("background", color); },
+
+        // invert
+        invert: function() {
+            var front = this.get("color");
+            var back = this.get("background");
+            this.set("color", back);
+            this.set("background", front);
+            
+            return this;
+        },
 
         // private
         _update: function() {
